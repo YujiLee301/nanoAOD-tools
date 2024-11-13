@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
 import sys
 import subprocess
@@ -107,7 +107,7 @@ jmsValues = {
     'UL2016': [1.000, 1.000, 1.000],  # placeholder
     'UL2017': [1.000, 1.000, 1.000],  # placeholder
     'UL2018': [1.000, 1.000, 1.000],  # placeholder
-}   
+}
 
 
 def createJMECorrector(isMC=True,

@@ -59,8 +59,13 @@ class puWeightProducer(Module):
 
     def loadHisto(self, filename, hname):
         tf = ROOT.TFile.Open(filename)
+        if not tf or tf.IsZombie():
+            raise IOError(f"Cannot open file: {filename}")
         hist = tf.Get(hname)
-        hist.SetDirectory(None)
+        if not hist:
+            raise IOError(f"Cannot find histogram {hname} in file: {filename}")
+
+        hist.SetDirectory(0) # With Python3/EL9 "None" is not working. So, replaced "None" with "0"
         tf.Close()
         return hist
 
