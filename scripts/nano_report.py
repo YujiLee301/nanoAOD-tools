@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # imported from https://github.com/CERN-PH-CMG/cmg-cmssw/blob/0c11a5a0a15c4c3e1a648c9707b06b08b747b0c0/PhysicsTools/Heppy/scripts/heppy_report.py
 from optparse import OptionParser
 import json

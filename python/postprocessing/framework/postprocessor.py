@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from PhysicsTools.NanoAODTools.postprocessing.framework.jobreport import JobReport
 from PhysicsTools.NanoAODTools.postprocessing.framework.preskimming import preSkim
 from PhysicsTools.NanoAODTools.postprocessing.framework.output import FriendOutput, FullOutput
@@ -261,8 +261,18 @@ class PostProcessor:
         if self.haddFileName:
             haddnano = "./haddnano.py" if os.path.isfile(
                 "./haddnano.py") else "haddnano.py"
+            print("Merging output files into %s" % self.haddFileName)
+            print("")
+            os.system('date')
+            startTime = time.time()
+            print("%s %s %s" %
+                      (haddnano, self.outputDir + "/" + self.haddFileName, " ".join(outFileNames)))
             os.system("%s %s %s" %
-                      (haddnano, self.haddFileName, " ".join(outFileNames)))
+                      (haddnano, self.outputDir + "/" + self.haddFileName, " ".join(outFileNames)))
+            os.system('date')
+            print("Total time to merge %i files: %.1f sec" %
+                  (len(outFileNames), time.time() - startTime))
+            print("Done")
         if self.jobReport:
-            self.jobReport.addOutputFile(self.haddFileName)
+            self.jobReport.addOutputFile( self.outputDir + "/" + self.haddFileName)
             self.jobReport.save()
